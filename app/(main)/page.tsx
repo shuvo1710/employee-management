@@ -48,7 +48,6 @@ const Dashboard = () => {
                     <span className="text-green-500 font-medium">520 </span>
                     <span className="text-500">newly registered</span>
                 </div>
-
             </div>
             <div className="col-12 lg:col-6 xl:col-3">
                 <div className="card mb-0">
