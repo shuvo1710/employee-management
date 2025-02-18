@@ -1,7 +1,44 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const Dashboard = () => {
+
+
+    // useEffect(() => {
+    //
+    //     const getData =async ()=>{
+    //
+    //         const json = await fetch('http://localhost:3000/data.json');
+    //         console.log("json",json);
+    //
+    //     }
+    //
+    //     getData().then()
+    //
+    // }, []);
+
+
+
+    useEffect(() => {
+      const getCountries = async () => {
+        try {
+          const res = await fetch(`http://localhost:3500/posts`, {
+            method: "GET",
+          });
+          if (res.ok && res.status !== 204) {
+            const resData = await res.json()
+              console.log("resData",resData);
+            // setCountryList(resData?.data)
+          }
+        } catch (error) {
+          console.log("error", error)
+        }
+      }
+      getCountries().then()
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+
     return (
         <div className="grid">
             <div className="col-12 lg:col-6 xl:col-3">
