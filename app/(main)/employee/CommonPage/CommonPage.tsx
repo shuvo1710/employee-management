@@ -10,8 +10,6 @@ import callToast from '@/app/utilities/helper';
 import { useRouter } from 'next/navigation';
 
 const CommonPage = ({ id }: { id?: number }) => {
-    console.log('update-id--->', id);
-
     const [userInfo, setUserInfo] = useState<any>({ name: '', email: '', phone: '', address: '', image: '', id: '' });
     const inputFileRef = useRef<HTMLInputElement>(null);
     const toast = useRef<Toast | null>(null);
@@ -21,7 +19,6 @@ const CommonPage = ({ id }: { id?: number }) => {
     // console.log("filter", filterEmployee);
     useEffect(() => {
         const filterEmployee = employeeInfo.find((item: any) => item.id === id);
-        console.log('filter', filterEmployee);
         if (filterEmployee) {
             const updatedData = filterEmployee;
             setUserInfo({
