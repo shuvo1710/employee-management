@@ -3,22 +3,6 @@ import React, { useEffect } from 'react';
 
 const Dashboard = () => {
 
-
-    // useEffect(() => {
-    //
-    //     const getData =async ()=>{
-    //
-    //         const json = await fetch('http://localhost:3000/data.json');
-    //         console.log("json",json);
-    //
-    //     }
-    //
-    //     getData().then()
-    //
-    // }, []);
-
-
-
     useEffect(() => {
       const getCountries = async () => {
         try {

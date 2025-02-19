@@ -7,7 +7,69 @@
         { "id": "1", "text": "a comment about post 1", "postId": "1" },
         { "id": "2", "text": "another comment about post 1", "postId": "1" }
     ],
-    "profile": {
-        "name": "typicode"
-    }
+    "employeeData": [
+        {
+            "id": "67b4a66aebc965ba5f7fb798",
+            "picture": "http://placehold.it/32x32",
+            "name": "Genevieve Sanchez",
+            "gender": "female",
+            "email": "genevievesanchez@keengen.com",
+            "phone": "+1 (843) 485-2940",
+            "address": "980 Nassau Street, Healy, Kentucky, 5924"
+        },
+        {
+            "id": "67b4a66ade444214df3485e3",
+            "picture": "http://placehold.it/32x32",
+            "name": "Kellie Dunlap",
+            "gender": "female",
+            "email": "kelliedunlap@keengen.com",
+            "phone": "+1 (933) 547-3544",
+            "address": "755 Burnett Street, Bluffview, South Carolina, 8903"
+        },
+        {
+            "id": "67b4a66a45e1f3fe4fb693e7",
+            "picture": "http://placehold.it/32x32",
+            "name": "Stacy Baird",
+            "gender": "female",
+            "email": "stacybaird@keengen.com",
+            "phone": "+1 (897) 506-3386",
+            "address": "110 Greenpoint Avenue, Tuskahoma, Ohio, 455"
+        },
+        {
+            "id": "67b4a66ad8144812b128f195",
+            "picture": "http://placehold.it/32x32",
+            "name": "Katie Rogers",
+            "gender": "female",
+            "email": "katierogers@keengen.com",
+            "phone": "+1 (821) 570-3383",
+            "address": "230 Tampa Court, Canby, Idaho, 4441"
+        },
+        {
+            "id": "67b4a66a2b50e0aaf66d53c0",
+            "picture": "http://placehold.it/32x32",
+            "name": "Richmond Hutchinson",
+            "gender": "male",
+            "email": "richmondhutchinson@keengen.com",
+            "phone": "+1 (939) 440-2252",
+            "address": "127 Victor Road, Freetown, New Hampshire, 7560"
+        },
+        {
+            "id": "67b4a66ac923fda63fc2ee80",
+            "picture": "http://placehold.it/32x32",
+            "name": "Evans Glenn",
+            "gender": "male",
+            "email": "evansglenn@keengen.com",
+            "phone": "+1 (939) 503-3796",
+            "address": "435 McKinley Avenue, Coalmont, Marshall Islands, 1615"
+        },
+        {
+            "id": "67b4a66a437c65150fb7b47a",
+            "picture": "http://placehold.it/32x32",
+            "name": "Kidd Castillo",
+            "gender": "male",
+            "email": "kiddcastillo@keengen.com",
+            "phone": "+1 (898) 521-3205",
+            "address": "563 Seaview Avenue, Fulford, Tennessee, 9267"
+        }
+    ]
 }

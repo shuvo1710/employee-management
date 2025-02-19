@@ -16,14 +16,14 @@ const AppMenu = () => {
             items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/' }]
         },
         {
-            label: 'Pages',
+            label: 'Employee',
             icon: 'pi pi-fw pi-briefcase',
-            to: '/pages',
+            // to: '/pages',
             items: [
                 {
-                    label: 'Crud',
+                    label: 'Employee',
                     icon: 'pi pi-fw pi-pencil',
-                    to: '/pages/crud'
+                    to: '/employee',
                 },
                 {
                     label: 'Empty',
