@@ -1,7 +1,4 @@
-import React, { ReactElement, Dispatch, SetStateAction, HTMLAttributeAnchorTarget, ReactNode } from 'react';
-import { NextPage } from 'next';
-import { Demo } from './demo';
-import { Toast } from 'primereact/toast';
+import React, { Dispatch, HTMLAttributeAnchorTarget, ReactNode, SetStateAction } from 'react';
 
 /* Breadcrumb Types */
 export interface AppBreadcrumbProps {
@@ -53,9 +50,9 @@ export interface MenuContextProps {
 }
 
 /* AppConfig Types */
-export interface AppConfigProps {
-    simple?: boolean;
-}
+// export interface AppConfigProps {
+//     simple?: boolean;
+// }
 
 /* AppTopbar Types */
 export type NodeRef = MutableRefObject<ReactNode>;

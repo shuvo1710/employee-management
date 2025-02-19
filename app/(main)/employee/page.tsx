@@ -9,37 +9,22 @@ import { Button } from 'primereact/button';
 
 const Employees = () => {
     const router = useRouter();
-    const [employeeData, setEmployeeData] = useState([]);
-    const [loading, setLoading] = useState<boolean>(false);
+    const [employeeInfo, setEmployeeInfo] = useState<any>([]);
 
     useEffect(() => {
-        const getEmployeeData = async () => {
-            setLoading(true);
-            try {
-                const res = await fetch(`http://localhost:3500/employeeData`, {
-                    method: 'GET'
-                });
-                if (res.ok && res.status !== 204) {
-                    const resData = await res.json();
-                    console.log('resData', resData);
-                    setEmployeeData(resData);
-                    // setCountryList(resData?.data)
-                }
-            } catch (error) {
-                console.log('error', error);
-            } finally {
-                setLoading(false);
-            }
-        };
-        getEmployeeData().then();
+        const employeeData = localStorage.getItem('employeeData');
+        if (employeeData) {
+            const data = JSON.parse(employeeData);
+            setEmployeeInfo(data);
+        } else {
+            setEmployeeInfo([]);
+        }
     }, []);
 
-
+    console.log("employee", employeeInfo);
 
     return (
         <div className={'card'}>
-            {/*<p>employee data</p>*/}
-
             <PageHeading
                 title={'Employees'}
                 isCreate={true}
@@ -50,23 +35,25 @@ const Employees = () => {
 
             <div>
                 <DataTable
-                    value={employeeData}
+                    value={employeeInfo}
                     dataKey="id"
                     className="datatable-responsive myTable"
                     emptyMessage="No data found."
                     // rowHover={true}
                     tableStyle={{ minWidth: '50rem' }}
-                    paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]}
+                    paginator
+                    rows={5}
+                    rowsPerPageOptions={[5, 10, 25, 50]}
                 >
                     <Column
                         header={'Name'}
                         body={(data: any) => {
-                            const { name, picture, id } = data;
+                            const { name, image, id } = data;
                             return (
                                 <div className="flex gap-2 align-items-center" onClick={() => router.push(`/products/update/${id}`)}>
-                                    {picture ? (
+                                    {image ? (
                                         <div className="w-4rem h-4rem">
-                                            <img src={picture} alt={'Product Image'} className={'border-round-lg h-full w-full'} />
+                                            <img src={image} alt={'Product Image'} className={'border-round-lg h-full w-full'} />
                                         </div>
                                     ) : (
                                         <Avatar icon="pi pi-box" size="xlarge" shape={'square'} />
@@ -80,20 +67,40 @@ const Employees = () => {
                     <Column field="phone" headerClassName={'white-space-nowrap'} header={'phone'}></Column>
                     <Column
                         header={'Action'}
-                        headerClassName={"flex justify-content-end w-full"}
+                        headerClassName={'flex justify-content-end w-full'}
                         body={(data) => {
+                            const {id} = data
                             return (
                                 <div className={`flex gap-2 align-items-center h-full  justify-content-end`}>
-                                    <Button type="button" tooltip={'Edit'} tooltipOptions={{ position: 'top' }} icon="pi pi-pencil" className="h-2rem w-2rem mr-2" onClick={() => {}}></Button>
-                                    <Button type="button" tooltip="Delete" tooltipOptions={{ position: 'top' }} icon="pi pi-trash" severity="danger" className="h-2rem w-2rem mr-2" onClick={(event) => {}}></Button>
+                                    <Button
+                                        type="button" tooltip={'Edit'}
+                                        tooltipOptions={{ position: 'top' }}
+                                        icon="pi pi-pencil" className="h-2rem w-2rem mr-2"
+                                        onClick={() => {
+                                            router.push(`/employee/update/${id}`)
+                                        }}
+                                    >
+                                    </Button>
+                                    <Button type="button" tooltip="Delete"
+                                            tooltipOptions={{ position: 'top' }}
+                                            icon="pi pi-trash" severity="danger"
+                                            className="h-2rem w-2rem mr-2"
+                                            onClick={() => {
+                                                const filerData = employeeInfo.filter((item: any) => item.id !== id);
+                                                console.log("filerData", filerData);
+                                                setEmployeeInfo(filerData)
+                                                localStorage.setItem('employeeData', JSON.stringify(filerData))
+
+
+                                            }}
+                                    >
+                                    </Button>
                                 </div>
                             );
                         }}
                     ></Column>
                 </DataTable>
             </div>
-
-
         </div>
     );
 };
