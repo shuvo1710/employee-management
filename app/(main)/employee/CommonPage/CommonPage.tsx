@@ -64,6 +64,7 @@ const CommonPage = ({ id }: { id?: number }) => {
             [name]: value
         });
     };
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
@@ -73,6 +74,9 @@ const CommonPage = ({ id }: { id?: number }) => {
         }
         if (!userInfo.email) {
             callToast(toast, false, 'Email field is required');
+        }
+        if(!emailRegex.test(userInfo.email)){
+            return callToast(toast, false, "Email field is invalid");
         }
         if (!userInfo.phone) {
             callToast(toast, false, 'Phone field is required');

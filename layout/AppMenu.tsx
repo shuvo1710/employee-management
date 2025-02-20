@@ -16,9 +16,14 @@ const AppMenu = () => {
             icon: 'pi pi-fw pi-briefcase',
             items: [
                 {
-                    label: 'Employee',
+                    label: 'Employee Table',
                     icon: 'pi pi-users',
                     to: '/employee',
+                },
+                {
+                    label: 'Employee Card',
+                    icon: 'pi pi-users',
+                    to: '/employee-card',
                 }
             ]
         }

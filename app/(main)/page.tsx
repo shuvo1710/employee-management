@@ -14,7 +14,6 @@ const Dashboard = () => {
                             <i className="pi pi-users text-blue-500 text-xl" />
                         </div>
                     </div>
-
                 </div>
             </div>
 

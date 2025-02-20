@@ -21,8 +21,6 @@ const Employees = () => {
         }
     }, []);
 
-    console.log("employee", employeeInfo);
-
     return (
         <div className={'card'}>
             <PageHeading
@@ -38,10 +36,10 @@ const Employees = () => {
                     value={employeeInfo}
                     dataKey="id"
                     className="datatable-responsive myTable"
-                    emptyMessage="No data found."
+                    emptyMessage="No employee found."
                     // rowHover={true}
                     tableStyle={{ minWidth: '50rem' }}
-                    paginator
+                    paginator={employeeInfo.length}
                     rows={5}
                     rowsPerPageOptions={[5, 10, 25, 50]}
                 >
