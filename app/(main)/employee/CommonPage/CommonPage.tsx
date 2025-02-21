@@ -8,6 +8,12 @@ import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
 import callToast from '@/app/utilities/helper';
 import { useRouter } from 'next/navigation';
+import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
+
+interface Department {
+    name: string;
+    id: string;
+}
 
 const CommonPage = ({ id }: { id?: number }) => {
     const [userInfo, setUserInfo] = useState<any>({ name: '', email: '', phone: '', address: '', image: '', id: '' });
@@ -16,11 +22,20 @@ const CommonPage = ({ id }: { id?: number }) => {
     const [employeeInfo, setEmployeeInfo] = useState<any>([]);
     const router = useRouter();
 
+    const [selectedDepartment, setSelectedDepartment] = useState<Department | null>(null);
+
+    const departments: Department[] = [
+        { name: 'Network Administration', id: 'Network Administration' },
+        { name: 'System Administration', id: 'System Administration' },
+        { name: 'Software Development', id: 'Software Development' },
+        { name: 'Cybersecurity', id: 'Cybersecurity' }
+    ];
     // console.log("filter", filterEmployee);
     useEffect(() => {
         const filterEmployee = employeeInfo.find((item: any) => item.id === id);
         if (filterEmployee) {
             const updatedData = filterEmployee;
+            console.log("updatedData", updatedData);
             setUserInfo({
                 name: updatedData.name,
                 email: updatedData.email,
@@ -28,6 +43,7 @@ const CommonPage = ({ id }: { id?: number }) => {
                 address: updatedData.address,
                 image: updatedData.image
             });
+            setSelectedDepartment(updatedData?.department)
         }
     }, [employeeInfo, id]);
 
@@ -66,34 +82,40 @@ const CommonPage = ({ id }: { id?: number }) => {
     };
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+    console.log('selectedDepartment', selectedDepartment);
+
     const handleSubmit = async (e: any) => {
         e.preventDefault();
-
+        if (!userInfo.image) {
+            return callToast(toast, false, 'Image field is required');
+        }
         if (!userInfo.name) {
-            callToast(toast, false, 'Name field is required');
+            return callToast(toast, false, 'Name field is required');
         }
         if (!userInfo.email) {
-            callToast(toast, false, 'Email field is required');
+            return callToast(toast, false, 'Email field is required');
         }
-        if(!emailRegex.test(userInfo.email)){
-            return callToast(toast, false, "Email field is invalid");
+        if (!emailRegex.test(userInfo.email)) {
+            return callToast(toast, false, 'Email field is invalid');
         }
         if (!userInfo.phone) {
-            callToast(toast, false, 'Phone field is required');
+            return callToast(toast, false, 'Phone field is required');
+        }
+        if (!selectedDepartment) {
+            return callToast(toast, false, 'Department field is required');
         }
         if (!userInfo.address) {
-            callToast(toast, false, 'Address field is required');
+            return callToast(toast, false, 'Address field is required');
         }
-        if (!userInfo.image) {
-            callToast(toast, false, 'Image field is required');
-        }
+
         if (id) {
             const updatedData = {
                 name: userInfo.name,
                 email: userInfo.email,
                 phone: userInfo.phone,
                 address: userInfo.address,
-                image: userInfo.image
+                image: userInfo.image,
+                department:selectedDepartment
             };
             const data = employeeInfo.map((user: any) => (user.id === id ? { ...user, ...updatedData } : user));
             localStorage.setItem('employeeData', JSON.stringify(data));
@@ -102,6 +124,7 @@ const CommonPage = ({ id }: { id?: number }) => {
         } else {
             const date = new Date();
             userInfo.id = `${date.getTime()}${userInfo.phone}`;
+            userInfo.department = selectedDepartment;
             const data = [...employeeInfo, userInfo];
             setEmployeeInfo(data);
             localStorage.setItem('employeeData', JSON.stringify(data));
@@ -145,6 +168,19 @@ const CommonPage = ({ id }: { id?: number }) => {
                                 <div className={'col-3'}>
                                     <Label label={'Phone'} required={true} />
                                     <InputText type={'number'} className={'w-full'} placeholder={'phone'} value={userInfo?.phone} onChange={(e) => handleChangeData('phone', e.target.value)} />
+                                </div>
+
+                                <div className={'col-3'}>
+                                    <Label label={'Department'} required={true} />
+                                    <Dropdown
+                                        value={selectedDepartment}
+                                        showClear
+                                        onChange={(e: DropdownChangeEvent) => setSelectedDepartment(e.target.value)}
+                                        options={departments}
+                                        optionLabel="name"
+                                        placeholder="Select a Department"
+                                        className="w-full "
+                                    />
                                 </div>
 
                                 <div className={'col-4'}>
