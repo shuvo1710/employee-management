@@ -35,7 +35,6 @@ const CommonPage = ({ id }: { id?: number }) => {
         const filterEmployee = employeeInfo.find((item: any) => item.id === id);
         if (filterEmployee) {
             const updatedData = filterEmployee;
-            console.log("updatedData", updatedData);
             setUserInfo({
                 name: updatedData.name,
                 email: updatedData.email,
@@ -81,8 +80,6 @@ const CommonPage = ({ id }: { id?: number }) => {
         });
     };
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    console.log('selectedDepartment', selectedDepartment);
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
@@ -157,20 +154,20 @@ const CommonPage = ({ id }: { id?: number }) => {
 
                         <div className={'grid '}>
                             <div className="col-12">
-                                <div className={'col-3'}>
+                                <div className={'md:col-3 col-12'}>
                                     <Label label={'Name'} required={true} />
                                     <InputText type={'text'} className={'w-full'} placeholder={'name'} value={userInfo?.name} onChange={(e) => handleChangeData('name', e.target.value)} />
                                 </div>
-                                <div className={'col-3'}>
+                                <div className={'md:col-3 col-12'}>
                                     <Label label={'Email'} required={true} />
                                     <InputText type={'email'} className={'w-full'} placeholder={'email'} value={userInfo?.email} onChange={(e) => handleChangeData('email', e.target.value)} />
                                 </div>
-                                <div className={'col-3'}>
+                                <div className={'md:col-3 col-12'}>
                                     <Label label={'Phone'} required={true} />
                                     <InputText type={'number'} className={'w-full'} placeholder={'phone'} value={userInfo?.phone} onChange={(e) => handleChangeData('phone', e.target.value)} />
                                 </div>
 
-                                <div className={'col-3'}>
+                                <div className={'md:col-3 col-12'}>
                                     <Label label={'Department'} required={true} />
                                     <Dropdown
                                         value={selectedDepartment}
@@ -183,7 +180,7 @@ const CommonPage = ({ id }: { id?: number }) => {
                                     />
                                 </div>
 
-                                <div className={'col-4'}>
+                                <div className={'md:col-3 col-12'}>
                                     <Label label={'Address'} required={true} />
                                     <InputTextarea className={'w-full'} placeholder={'Address'} value={userInfo?.address} onChange={(e) => handleChangeData('address', e.target.value)} />
                                 </div>
