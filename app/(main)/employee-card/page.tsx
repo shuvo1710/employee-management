@@ -18,7 +18,6 @@ const Page = () => {
         }
     }, []);
 
-    console.log('employeeInfo', employeeInfo);
 
     return (
         <div className="card">
@@ -34,7 +33,7 @@ const Page = () => {
                 <div className="grid">
                     <div className="col-12">
                         <div className="grid ">
-                            {employeeInfo.map((item: any, i: number) => {
+                            {employeeInfo?.map((item: any, i: number) => {
                                 return (
                                     <div className="md:col-4 col-12" key={i}>
                                         <div className="card h-full">
@@ -84,27 +83,6 @@ const Page = () => {
                                                         <span>{item?.address}</span>
                                                     </p>
                                                 </div>
-
-                                                {/*<div className="grid col-12 p-0">*/}
-                                                {/*    <p className="col-3 text-lg font-medium m-0">Name:</p>*/}
-                                                {/*    <p className="col-9 text-lg font-medium m-0">{item?.name}</p>*/}
-                                                {/*</div>*/}
-                                                {/*<div className="grid col-12 p-0">*/}
-                                                {/*    <p className="col-3 text-lg font-medium m-0">Email:</p>*/}
-                                                {/*    <p className="col-9 text-lg font-medium m-0">{item?.email}</p>*/}
-                                                {/*</div>*/}
-                                                {/*<div className="grid col-12 p-0">*/}
-                                                {/*    <p className="col-3 text-lg font-medium m-0">Phone:</p>*/}
-                                                {/*    <p className="col-9 text-lg font-medium m-0">{item?.phone}</p>*/}
-                                                {/*</div>*/}
-                                                {/*<div className="grid col-12 p-0">*/}
-                                                {/*    <p className="col-3 text-lg font-medium m-0">Department:</p>*/}
-                                                {/*    <p className="col-9 text-lg font-medium m-0">{item?.department?.name}</p>*/}
-                                                {/*</div>*/}
-                                                {/*<div className="grid col-12 p-0">*/}
-                                                {/*    <p className="col-3 text-lg font-medium m-0">Address:</p>*/}
-                                                {/*    <p className="col-9 text-lg font-medium m-0">{item?.address}</p>*/}
-                                                {/*</div>*/}
                                             </div>
                                         </div>
                                     </div>

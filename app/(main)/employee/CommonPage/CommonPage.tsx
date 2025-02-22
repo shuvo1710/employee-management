@@ -30,7 +30,7 @@ const CommonPage = ({ id }: { id?: number }) => {
         { name: 'Software Development', id: 'Software Development' },
         { name: 'Cybersecurity', id: 'Cybersecurity' }
     ];
-    // console.log("filter", filterEmployee);
+
     useEffect(() => {
         const filterEmployee = employeeInfo.find((item: any) => item.id === id);
         if (filterEmployee) {
